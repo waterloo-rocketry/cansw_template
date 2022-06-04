@@ -1,14 +1,14 @@
 #include "device_config.h"
 #include <xc.h>
 
-void OSCILLATOR_Initialize(void)
+void oscillator_init(void)
 {
-    // Select external oscillator with PLL of 1:1
-    OSCCON1 = 0x70;
+    // Select external oscillator with PLL of 4:1
+    OSCCON1 = 0x20;
     //wait until the clock switch has happened
     while (OSCCON3bits.ORDY == 0)  {}
     //if the currently active clock (CON2) isn't the selected clock (CON1)
-    if (OSCCON2 != 0b01110000) {
+    if (OSCCON2 != 0b00100000) {
         //infinite loop, something is broken, what even is an assert()?
         while (1) {}
     }

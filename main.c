@@ -2,7 +2,9 @@
 #include "canlib.h"
 
 #include "device_config.h"
-#include "board.h"
+#include "platform.h"
+
+#define MAX_LOOP_TIME_DIFF_ms 250
 
 static void can_msg_handler(const can_msg_t *msg);
 
@@ -10,26 +12,26 @@ static void can_msg_handler(const can_msg_t *msg);
 uint8_t tx_pool[100];
 
 int main(void) {
+    // set up pins
+    gpio_init();
+    
     // intiialize the external oscillator
-    OSCILLATOR_Initialize();
+    oscillator_init();
 
     // init our millis() function
     timer0_init();
-
-    // set up pins
-    gpio_init();
 
     // Enable global interrupts
     INTCON0bits.GIE = 1;
 
     // Set up CAN TX
-    TRISC1 = 0; // set as output
-    RC1PPS = 0x33; // make C1 transmit CAN TX (page 267)
+    TRISC0 = 0; // set as output
+    RC0PPS = 0x33; // make C0 transmit CAN TX (page 267)
 
     // Set up CAN RX
-    TRISC0 = 1; // set as input
-    ANSELC0 = 0; // not analog
-    CANRXPPS = 0x10; // make CAN read from C0 (page 264-265)
+    TRISC1 = 1; // set as input
+    ANSELC1 = 0; // not analog
+    CANRXPPS = 0x11; // make CAN read from C1 (page 264-265)
 
     // set up CAN module
     can_timing_t can_setup;

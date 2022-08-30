@@ -11,10 +11,10 @@
             <header-extensions>h</header-extensions>
             <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
-            <make-dep-projects>
-                <make-dep-project>../canlib</make-dep-project>
-            </make-dep-projects>
-            <sourceRootList/>
+            <make-dep-projects/>
+            <sourceRootList>
+                <sourceRootElem>canlib</sourceRootElem>
+            </sourceRootList>
             <confList>
                 <confElem>
                     <name>default</name>

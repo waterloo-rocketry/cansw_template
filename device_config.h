@@ -3,6 +3,6 @@
 
 #define _XTAL_FREQ 12000000
 
-void OSCILLATOR_Initialize(void);
+void oscillator_init(void);
 
 #endif

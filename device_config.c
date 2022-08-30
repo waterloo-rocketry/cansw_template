@@ -1,7 +1,7 @@
 #include "device_config.h"
 #include <xc.h>
 
-void OSCILLATOR_Initialize(void)
+void oscillator_init(void)
 {
     // Select external oscillator with PLL of 1:1
     OSCCON1 = 0x70;
@@ -19,7 +19,7 @@ void OSCILLATOR_Initialize(void)
 
 // CONFIG1L
 #pragma config FEXTOSC = HS    // External Oscillator Selection->HS (crystal oscillator) above 8 MHz; PFM set to high power
-#pragma config RSTOSC = HFINTOSC_1MHZ    // Reset Oscillator Selection->EXTOSC operating per FEXTOSC bits (device manufacturing default)
+#pragma config RSTOSC = HFINTOSC_1MHZ//    // Reset Oscillator Selection->EXTOSC operating per FEXTOSC bits (device manufacturing default)
 
 // CONFIG1H
 #pragma config CLKOUTEN = OFF    // Clock out Enable bit->CLKOUT function is disabled
